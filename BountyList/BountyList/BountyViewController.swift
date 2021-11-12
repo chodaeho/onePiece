@@ -9,6 +9,7 @@ import UIKit
 
 class BountyViewController: UIViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
