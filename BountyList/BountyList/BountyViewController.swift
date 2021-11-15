@@ -56,5 +56,10 @@ class BountyViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     
+}
 
+class ListCell: UITableViewCell {
+    @IBOutlet weak var imaView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var bountyLable: UILabel!
 }
