@@ -27,11 +27,33 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vg4-fL-8fL">
-                                                    <rect key="frame" x="20" y="36" width="240" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vg4-fL-8fL">
+                                                    <rect key="frame" x="15" y="11" width="124.5" height="178"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Vg4-fL-8fL" secondAttribute="height" multiplier="7:10" id="4zc-9M-N0X"/>
+                                                    </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="109-x4-eqj">
+                                                    <rect key="frame" x="259" y="53" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMU-cW-nxM">
+                                                    <rect key="frame" x="259" y="89" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Vg4-fL-8fL" firstAttribute="top" secondItem="nVT-LT-KDb" secondAttribute="top" constant="11" id="Q3R-gR-Stl"/>
+                                                <constraint firstItem="Vg4-fL-8fL" firstAttribute="centerY" secondItem="nVT-LT-KDb" secondAttribute="centerY" id="Zvt-0K-tX5"/>
+                                                <constraint firstAttribute="bottom" secondItem="Vg4-fL-8fL" secondAttribute="bottom" constant="11" id="fxS-ex-2Vn"/>
+                                                <constraint firstItem="Vg4-fL-8fL" firstAttribute="leading" secondItem="nVT-LT-KDb" secondAttribute="leading" constant="15" id="mvJ-nJ-h1E"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
