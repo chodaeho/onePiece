@@ -17,6 +17,16 @@ class BountyViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail" {
+            let vc = segue.destination as? DetailViewController
+            if let index = sender as? Int {
+                vc?.name = nameList[index]
+                vc?.bounty = bountyList[index]
+            }
+        }
+    }
+    
     // UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bountyList.count
@@ -38,7 +48,7 @@ class BountyViewController: UIViewController, UITableViewDataSource, UITableView
     // UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("--> \(indexPath.row)")
-        performSegue(withIdentifier: "showDetail", sender: nil)
+        performSegue(withIdentifier: "showDetail", sender: indexPath.row)
     }
     
 }
