@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E27154DB274F951700EE60BC /* File.strings in Resources */ = {isa = PBXBuildFile; fileRef = E27154DA274F951700EE60BC /* File.strings */; };
 		E27256F6273E992300FB0A27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27256F5273E992300FB0A27 /* AppDelegate.swift */; };
 		E27256F8273E992300FB0A27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27256F7273E992300FB0A27 /* SceneDelegate.swift */; };
 		E27256FD273E992300FB0A27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27256FB273E992300FB0A27 /* Main.storyboard */; };
@@ -18,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E27154DA274F951700EE60BC /* File.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = File.strings; sourceTree = "<group>"; };
 		E27256F2273E992300FB0A27 /* BountyList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BountyList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E27256F5273E992300FB0A27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E27256F7273E992300FB0A27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 				E27256FE273E992500FB0A27 /* Assets.xcassets */,
 				E2725700273E992500FB0A27 /* LaunchScreen.storyboard */,
 				E2725703273E992500FB0A27 /* Info.plist */,
-				E27154DA274F951700EE60BC /* File.strings */,
 			);
 			path = BountyList;
 			sourceTree = "<group>";
@@ -131,7 +128,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E27154DB274F951700EE60BC /* File.strings in Resources */,
 				E2725702273E992500FB0A27 /* LaunchScreen.storyboard in Resources */,
 				E27256FF273E992500FB0A27 /* Assets.xcassets in Resources */,
 				E27256FD273E992300FB0A27 /* Main.storyboard in Resources */,
