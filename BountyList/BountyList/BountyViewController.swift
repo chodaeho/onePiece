@@ -5,97 +5,20 @@
 //  Created by 조대호 on 2021/11/12.
 //
 
-//import UIKit
-//
-//class BountyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-//
-//    let nameList = ["brook","chopper","franky","luffy","nami","robin","sanji","zoro"]
-//    let bountyList = ["33000000","50","44000000","3000000000","16000000","80000000","77000000","1200000000"]
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showDetail" {
-//            let vc = segue.destination as? DetailViewController
-//            if let index = sender as? Int {
-//                vc?.name = nameList[index]
-//                vc?.bounty = bountyList[index]
-//            }
-//        }
-//    }
-//
-//    // UITableViewDataSource
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return bountyList.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ListCell else {
-//            return UITableViewCell()
-//        }
-//
-//        let img = UIImage(named: "\(nameList[indexPath.row]).jpg")
-//        cell.imgView.image = img
-//        cell.nameLabel.text = nameList[indexPath.row]
-//        cell.bountyLable.text = "\(bountyList[indexPath.row])"
-//
-//        return cell
-//    }
-//
-//    // UITableViewDelegate
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("--> \(indexPath.row)")
-//        performSegue(withIdentifier: "showDetail", sender: indexPath.row)
-//    }
-//
-//}
-//
-//class ListCell: UITableViewCell {
-//    @IBOutlet weak var imgView: UIImageView!
-//    @IBOutlet weak var nameLabel: UILabel!
-//    @IBOutlet weak var bountyLable: UILabel!
-//}
-
-
-// MVVM 디자인패턴으로 변경
-
 import UIKit
 
-class BountyViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BountyViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-//    MVVM 디자인 패턴으로 변경하기
-    
-//    Model
-//    - BountyInfo
-//    >BountyInfo 생성
-    
-//    View
-//    - ListCell
-//    > ListCell 필요한 정보를 ViewModel에서 받아야함
-//    > ListClee은 ViewModel로 부터 받은 정보로 뷰 업데이트
-    
-//    ViewModel
-//    - BountyViewModel
-//    > BountyViewModel을 생성하고, 뷰레이어에서 필요한 메서드 만들기
-//    > Model(BountyInfo)을 가지고 있어야 함.
-    
-    // MVVM 디자인 패턴의 ViewModel
     let viewModel = BountyViewModel()
      
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             let vc = segue.destination as? DetailViewController
             if let index = sender as? Int {
-//                Model에 직접 접근하는게 아니라 ViewModel에 인덱스를 넘겨 필요한 데이터 요청
-//                let bountyInfo = viewModel.bountyInfoList[index]
                 let bountyInfo = viewModel.bountyInfo(at: index)
                 
                 vc?.viewModel.bountyInfo = bountyInfo
@@ -103,55 +26,55 @@ class BountyViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    // UITableViewDataSource
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//    UICollectionViewDataSource
+//    몇개를 보여줄지,
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numOfBountyInfoList
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ListCell else {
-            return UITableViewCell()
-        }
+//    Cell을 어떻게 표현할지 정의
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GridCell", for: indexPath) as? GridCell else { return UICollectionViewCell() }
+        let bountyInfo = viewModel.bountyInfo(at: indexPath.item)
         
-//        Model에 직접 접근하는게 아니라 ViewModel에 인덱스를 넘겨 필요한 데이터 요청
-//        let bountyInfo = viewModel.bountyInfoList[indexPath.row]
-        let bountyInfo = viewModel.bountyInfo(at: indexPath.row)
         cell.update(info: bountyInfo)
-//        MVVM 디자인패턴 ViewController가 실행을 안해도 되는 코드는 View 부분으로 옮김
-//        let img = UIImage(named: "\(bountyInfo.name).jpg")
-//        cell.imgView.image = img
-//        cell.nameLabel.text = bountyInfo.name
-//        cell.bountyLable.text = "\(bountyInfo.bounty)"
-        
-        
         
         return cell
     }
     
-    // UITableViewDelegate
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("--> \(indexPath.row)")
-        performSegue(withIdentifier: "showDetail", sender: indexPath.row)
+    //    UICollectionViewDelegate
+    //    Cell 클릭 되었을때 어떻게 할지 정의
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showDetail", sender: indexPath.item)
+    }
+    
+//    UICollectionViewDelegateFlowLayout
+//    다양한 디바이스에 일관적으로 디자인을 보여주기 위해 Cell size 계산
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemSpacing: CGFloat = 10
+        let textAreaHeight: CGFloat = 65
+        let width: CGFloat = (collectionView.bounds.width - itemSpacing)/2
+        let height: CGFloat = width * 10/7 + textAreaHeight
+        
+        return CGSize(width: width, height: height)
     }
     
 }
 
-class ListCell: UITableViewCell {
+class GridCell: UICollectionViewCell {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bountyLable: UILabel!
     
-//    MVVM 디자인 패턴의 View 생성
     func update(info: BountyInfo) {
         imgView.image = info.image
         nameLabel.text = info.name
         bountyLable.text = "\(info.bounty)"
     }
+    
 }
 
-// MVVM 디자인 패턴의 ViewModel 생성
 class BountyViewModel {
-    // MVVM 디자인 패턴의 Model
     let bountyInfoList: [BountyInfo] = [
         BountyInfo(name: "brook", bounty: 33000000),
         BountyInfo(name: "chopper", bounty: 50),
@@ -177,4 +100,5 @@ class BountyViewModel {
     func bountyInfo(at index: Int) -> BountyInfo {
         return sortedList[index]
     }
+    
 }
