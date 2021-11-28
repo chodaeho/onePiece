@@ -36,9 +36,13 @@ class DetailViewController: UIViewController {
         nameLabelCenterX.constant = 0
         bountyLabelCenterX.constant = 0
         
-        UIView.animate(withDuration: 0.3) {
+        // 기본적인 애니메이션 속성
+        UIView.animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: .allowUserInteraction, animations: {
             self.view.layoutIfNeeded()
-        }
+        }, completion: nil)
+        
+        // 이미지 플립
+        UIView.transition(with: imgView, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
     }
     
     func updateUI() {
