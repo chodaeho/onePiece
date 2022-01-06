@@ -7,6 +7,7 @@
 
 import UIKit
 
+// UI요소(UIView, UIViewController)
 class BountyViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     let viewModel = BountyViewModel()
@@ -74,6 +75,7 @@ class GridCell: UICollectionViewCell {
     
 }
 
+// viewModel(중계자)
 class BountyViewModel {
     let bountyInfoList: [BountyInfo] = [
         BountyInfo(name: "brook", bounty: 33000000),

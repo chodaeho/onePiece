@@ -8,6 +8,7 @@
 
 import UIKit
 
+// UI요소(UIView, UIViewController)
 class DetailViewController: UIViewController {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -90,6 +91,7 @@ class DetailViewController: UIViewController {
 
 }
 
+// viewModel(중계자)
 class DetailViewModel {
     var bountyInfo: BountyInfo?
     
